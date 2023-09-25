@@ -19,7 +19,7 @@ try:
             from_ =  "FROM_NUMBER",
             to = "TO_NUMBER"
         )
-    print("Message sent Successfully!")
+    print(f"Message sent Successfully message id {message.sid}!")
     
 except Exception as e:
     print(f'SMS could not be sent. Error: {str(e)}')
