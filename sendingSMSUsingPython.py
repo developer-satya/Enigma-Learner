@@ -1,9 +1,9 @@
 import os
 from twilio.rest import Client
 
-# Create Environment Variable (User variable)
-# Named: TWILIO_ACCOUNT_SID     value: (twilio sid)
-# Named: TWILIO_AUTH_TOKEN      value: (authorization token)
+# Find your Account SID and Auth Token at 👉 https://www.twilio.com/console
+# Set environment variables. 👉 https://www.twilio.com/blog/how-to-set-environment-variables-html
+
 account_sid = os.environ['TWILIO_ACCOUNT_SID']
 auth_token = os.environ['TWILIO_AUTH_TOKEN']
 client = Client(account_sid, auth_token)
