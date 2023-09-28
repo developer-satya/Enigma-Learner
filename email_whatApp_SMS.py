@@ -1,7 +1,7 @@
 import smtplib
 import pywhatkit
 import os
-import vonage
+from twilio.rest import Client
 
 
 # ---------------Sending Email-------------------------
@@ -35,22 +35,23 @@ def sendWhatsAppmsg(number, message, hr, mint):
 
 
 # ---------------Sending SMS-------------------------
-def sendSMS(sender_detail, to_number, message):
-    account_sid = os.environ['VONAGE_API_KEY']
-    auth_token = os.environ['VONAGE_API_SECRET']
-    client = vonage.Client(key=account_sid, secret=auth_token)
-    sms = vonage.Sms(client)
+def sendSMS(from_number, to_number, message):
+
+    # Find your Account SID and Auth Token at 👉 https://www.twilio.com/console
+    # Set environment variables. 👉 https://www.twilio.com/blog/how-to-set-environment-variables-html
+    account_sid = os.environ['TWILIO_ACCOUNT_SID']
+    auth_token = os.environ['TWILIO_AUTH_TOKEN']
+    client = Client(account_sid, auth_token)
 
     # Sending messaging
     try:
-        response = sms.send_message(
-            {
-                "from": sender_detail,
-                "to": to_number,
-                "text": message,
-            }
-        )   
-        print(f"Message sent Successfully with message id \"{response['messages'][0]['message-id']}!\"")
+        message = client.messages\
+            .create(
+                body=message,
+                from_ =  from_number,
+                to = to_number
+            )
+        print(f"Message sent Successfully. Message id is {message.sid}!")
         
     except Exception as e:
         print(f'SMS could not be sent. Error: {str(e)}')
@@ -80,10 +81,10 @@ while True:
             sendWhatsAppmsg(phone_number, message, time_hr, time_min, 15, False, 10)
 
         elif (choice == 3):
-            sender_detail = input("Enter Sender's Name: ")
+            from_number = input("Enter Sender's Number: ")
             to_number = input("Enter Receiver's Number: ")
             message = input("Enter your message: ")
-            sendSMS(sender_detail, to_number, message)
+            sendSMS(from_number, to_number, message)
 
         elif(choice == 4):
             print("------------ Exit -----------")
