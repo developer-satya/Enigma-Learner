@@ -63,8 +63,9 @@ while True:
             1. Send E-mail
             2. Send WhatsApp Message
             3. Send SMS
+            4. Exit
         ''')
-        choice = int(input("Enter Your Choice (1/2/3): "))
+        choice = int(input("Enter Your Choice (1/2/3/4): "))
         
         if (choice == 1):
             receiver_email = input("Enter receiver e-mail: ")
@@ -84,6 +85,10 @@ while True:
             to_number = input("Enter Receiver's Number: ")
             message = input("Enter your message: ")
             sendSMS(sender_detail, to_number, message)
+
+        elif(choice == 4):
+            print("------------ Exit -----------")
+            exit(0)
 
     except Exception as e:
         print(f"Something went wrong. {str(e)}")
