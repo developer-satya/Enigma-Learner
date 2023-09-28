@@ -2,7 +2,6 @@ import smtplib
 import pywhatkit
 import os
 import vonage
-from twilio.rest import Client
 
 
 # ---------------Sending Email-------------------------
