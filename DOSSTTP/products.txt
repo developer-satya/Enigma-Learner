@@ -1,0 +1,12 @@
+name,price,freq
+soap,10,100
+sampoo,2,4
+biscuit,5,25
+chips,5,25
+chocolate,10,100
+coffee,2,4
+Goldflake,10,100
+washing powder,5,25
+Tea,10,100
+PassPass,10,100
+water,0,0
